@@ -12,9 +12,9 @@ let package = Package(
 )
 
 #if os(Linux)
-    package.dependencies = [.package(name: "CSQLite", url: "https://github.com/damuellen/CSQLite.git", from: "1.1.0")]
+    package.dependencies = [.package(name: "CSQLite", url: "https://github.com/damuellen/CSQLite.git", from: "1.0.0")]
     package.targets = [
-        .target(name: "SQLite", exclude: ["Extensions/FTS4.swift", "Extensions/FTS5.swift"]),
+        .target(name: "SQLite", dependencies: ["CSQLite"], exclude: ["Extensions/FTS4.swift", "Extensions/FTS5.swift"]),
         .testTarget(name: "SQLiteTests", dependencies: ["SQLite"], path: "Tests/SQLiteTests", exclude: [
             "FTS4Tests.swift",
             "FTS5Tests.swift"
